@@ -25,3 +25,6 @@ trainer = Trainer(cfg, ModelTest, )
 trainer.add_rule(rule)
 trainer.run()
 ```
+
+## Installation
+pip3 install git+https://github.com/attashe/trainer.git@master
