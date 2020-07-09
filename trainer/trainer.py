@@ -8,15 +8,17 @@ from .model import Model
 
 
 class Trainer:
-    def __init__(self, init_cfg, model: type(Model), workdir='./workdir'):
+    def __init__(self, init_cfg, model: type(Model), workdir='./workdir', clear_dir=False):
         self.config: dict = init_cfg
         self.results: dict = {}
         self.rules: [UpdateRule] = []
         self.model_class = model
 
         if os.path.exists(workdir):
-            shutil.rmtree(workdir)
-        os.mkdir(workdir)
+            if clear_dir:
+                shutil.rmtree(workdir)
+        else:
+            os.mkdir(workdir)
         self.workdir = workdir
 
         with open(os.path.join(workdir, 'config.yaml'), 'w') as f:
